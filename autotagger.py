@@ -5,7 +5,7 @@ from os import listdir
 from os.path import isfile, join
 from textblob.classifiers import NaiveBayesClassifier
 
-trainPart = 0.005  
+trainPart = 0.1  
 testPartCount = 5
 tagsMatchCount = 3
 
@@ -34,7 +34,7 @@ testSet = posts[trainSetCount:trainSetCount+testPartCount]
 #Perform classification
 for post in testSet:
     classificationResults = classifier.prob_classify(re.sub(re.compile('<.*?>'), '', post.get("Body")).replace("\n", ""))
-    print("\nPost: " + classificationResults)
+    print("\nPost: " + str(classificationResults))
     print("Best matching tags: ")
     tagsWithRanks = {}
     for tag in classificationResults.samples():
